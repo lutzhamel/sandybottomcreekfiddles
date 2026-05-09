@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sandy Bottom Creek Fiddles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #faf8f4;
+      --warm:    #f0ebe0;
+      --ink:     #1a1814;
+      --mid:     #6b6560;
+      --accent:  #8b5e3c;
+      --rule:    #ddd8ce;
+      --nav-h:   64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 0 48px;
+      z-index: 100;
+    }
+
+    nav a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      margin-left: 40px;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--ink); }
+    nav a.active {
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 80px) 0 80px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ── HERO / ABOUT ── */
+    #about {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    /* Banner image */
+    .banner {
+      width: 100%;
+      height: 260px;
+      margin-bottom: 56px;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Logo + title lockup */
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    /* Logo image */
+    .logo {
+      width: 96px;
+      height: 96px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .title-block h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+    .title-block h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .title-block .tagline {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 10px;
+    }
+
+    /* About body text */
+    .about-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+    .about-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--mid);
+      margin-bottom: 20px;
+      max-width: 640px;
+    }
+
+    hr.section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 64px 0;
+    }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--cream); }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--ink);
+      margin-bottom: 48px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      position: relative;
+      background: var(--warm);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.03); }
+
+    /* text card in grid */
+    .gallery-text {
+      grid-column: span 1;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      aspect-ratio: 4/5;
+    }
+    .gallery-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.15rem;
+      font-style: italic;
+      margin-bottom: 14px;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .gallery-text p {
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--mid);
+    }
+    .gallery-text .text-rule {
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    .contact-line {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 28px;
+    }
+    .contact-line .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .contact-line .value {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .contact-line a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: border-color 0.2s;
+    }
+    .contact-line a:hover { border-color: var(--accent); }
+
+    .contact-note {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--mid);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 28px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer .foot-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--mid);
+      font-style: italic;
+    }
+    footer .foot-copy {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--rule);
+      text-transform: uppercase;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .identity    { animation: fadeUp 0.7s ease both; }
+    .banner      { animation: fadeUp 0.7s 0.1s ease both; }
+    .about-body  { animation: fadeUp 0.7s 0.15s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      nav a { margin-left: 20px; }
+      .container { padding: 0 20px; }
+      .identity { flex-direction: column; gap: 20px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.wide { grid-column: span 2; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#about"   class="active" onclick="setActive(this)">About</a>
+    <a href="#gallery"             onclick="setActive(this)">Gallery</a>
+    <a href="#contact"             onclick="setActive(this)">Contact</a>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+
+      <!-- Banner -->
+      <div class="banner">
+        <img src="images/banner.png" alt="Sandy Bottom Creek Fiddles — workshop and instruments">
+      </div>
+
+      <!-- Logo + Name -->
+      <div class="identity">
+        <div class="logo">
+          <img src="images/logo.png" alt="Sandy Bottom Creek Fiddles logo">
+        </div>
+        <div class="title-block">
+          <h1>Sandy Bottom Creek<br><em>Fiddles</em></h1>
+          <p class="tagline">Handcrafted · Rhode Island</p>
+        </div>
+      </div>
+
+      <!-- About text -->
+      <div class="about-body">
+        <h2>The Maker</h2>
+        <p>
+          [Introduce yourself here — your background, how you came to fiddle making,
+          what drives your craft. Write in your own voice; this is where visitors
+          connect with the person behind the instrument.]
+        </p>
+        <p>
+          [A second paragraph about your process, your philosophy, or what makes
+          a Sandy Bottom Creek fiddle distinct — the woods you prefer, the tradition
+          you draw from, anything that tells the story of the work.]
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <p class="section-label">Work</p>
+      <h2 class="section-title">Gallery</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/nordic-front.jpg" alt="celtic inspired fiddle">
+        </div>
+        <div class="gallery-item">
+          <img src="images/nordic-side.jpg" alt="celtic inspired fiddle">
+        </div>
+        <div class="gallery-item">
+          <img src="images/nordic-back.jpg" alt="celtic inspired fiddle">
+        </div>
+        <div class="gallery-text">
+          <div class="text-rule"></div>
+          <h3>[Instrument or collection title]</h3>
+          <p>[Describe the instruments shown — the wood species, the model, the inspiration behind the build, or anything that tells the story of the work. A few sentences is plenty.]</p>
+        </div>
+        <div class="gallery-item">
+          <img src="images/electric.jpg" alt="[Describe this instrument]">
+        </div>
+        <div class="gallery-item">
+          <img src="images/electric-back.jpg" alt="[Describe this instrument]">
+        </div>
+        <div class="gallery-item">
+          <img src="images/cornerless-martin.jpg" alt="[Describe this instrument]">
+        </div>
+        <div class="gallery-item">
+          <img src="images/cornerless-modern-detail.jpg" alt="[Describe this instrument]">
+        </div>
+        <div class="gallery-item">
+          <img src="images/cornerless-modern.jpg" alt="[Describe this instrument]">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact</h2>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Inquiries &amp; Commissions</h3>
+
+          <div class="contact-line">
+            <span class="label">Email</span>
+            <span class="value">
+              <a href="mailto:hello@sandybottomcreekfiddles.com">
+                hello@sandybottomcreekfiddles.com
+              </a>
+            </span>
+          </div>
+
+          <div class="contact-line">
+            <span class="label">Location</span>
+            <span class="value">Coventry, Rhode Island</span>
+          </div>
+
+          <div class="contact-line">
+            <span class="label">Instagram</span>
+            <span class="value">
+              <a href="https://instagram.com/sandybottomcreekfiddles" target="_blank" rel="noopener">
+                @sandybottomcreekfiddles
+              </a>
+            </span>
+          </div>
+
+        </div>
+
+        <p class="contact-note">
+          Each instrument is made to order. I welcome inquiries about commissions,
+          repairs, and collaborations. Response time is typically within a few days —
+          I spend most of my time in the workshop.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="foot-name">Sandy Bottom Creek Fiddles</span>
+    <span class="foot-copy">&copy; <span id="yr"></span> All rights reserved</span>
+  </footer>
+
+  <script>
+    // Current year in footer
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Active nav link on click
+    function setActive(el) {
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
