@@ -70,7 +70,7 @@
     }
 
     .container {
-      max-width: 860px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 40px;
     }
@@ -84,7 +84,7 @@
     /* Banner image */
     .banner {
       width: 100%;
-      height: 260px;
+      height: 360px;
       margin-bottom: 56px;
       overflow: hidden;
       border-radius: 2px;
@@ -155,7 +155,7 @@
       line-height: 1.85;
       color: var(--mid);
       margin-bottom: 20px;
-      max-width: 640px;
+      max-width: 100%;
     }
 
     hr.section-rule {
@@ -183,17 +183,19 @@
     }
 
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 16px;
     }
 
     .gallery-item {
-      aspect-ratio: 4/5;
+      flex: 0 0 280px;
+      height: 380px;
       overflow: hidden;
       position: relative;
       background: var(--warm);
     }
+
     .gallery-item img {
       width: 100%;
       height: 100%;
@@ -206,14 +208,13 @@
 
     /* text card in grid */
     .gallery-text {
-      grid-column: span 1;
+      flex: 0 0 280px;
       background: var(--ink);
       color: var(--cream);
       padding: 32px 28px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      aspect-ratio: 4/5;
     }
     .gallery-text h3 {
       font-family: 'Cormorant Garamond', serif;
@@ -396,17 +397,15 @@
 
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="images/nordic-front.jpg" alt="celtic inspired fiddle">
+          <img src="images/nordic-front.jpg" alt="celtic inspired fiddle front">
         </div>
         <div class="gallery-item">
-          <img src="images/nordic-side.jpg" alt="celtic inspired fiddle">
+          <img src="images/nordic-side.jpg"  alt="celtic inspired fiddle side">
         </div>
         <div class="gallery-item">
-          <img src="images/nordic-back.jpg" alt="celtic inspired fiddle">
+          <img src="images/nordic-back.jpg" alt="celtic inspired fiddle back">
         </div>
         <div class="gallery-text">
-          <br>
-          <br>
           <div class="text-rule"></div>
           <h3>A Sample of my Work</h3>
           <p>The first three images show a Nordic inspired violin with ebony and maple inlaid binding</p>
@@ -419,19 +418,19 @@
           <p>The remaining two images are of a cornerless fiddle using traditional woods.</p>
         </div>
         <div class="gallery-item">
-          <img src="images/electric.jpg" alt="[Describe this instrument]">
+          <img src="images/electric.jpg" alt="electric fiddle">
         </div>
         <div class="gallery-item">
-          <img src="images/electric-back.jpg" alt="[Describe this instrument]">
+          <img src="images/electric-back.jpg" alt="electric fiddle back">
         </div>
         <div class="gallery-item">
-          <img src="images/cornerless-martin.jpg" alt="[Describe this instrument]">
+          <img src="images/cornerless-martin.jpg" alt="Martin inspired cornerless fiddle">
         </div>
         <div class="gallery-item">
-          <img src="images/cornerless-modern-detail.jpg" alt="[Describe this instrument]">
+          <img src="images/cornerless-modern-detail.jpg" alt="cornerless fiddle detail">
         </div>
         <div class="gallery-item">
-          <img src="images/cornerless-modern.jpg" alt="[Describe this instrument]">
+          <img src="images/cornerless-modern.jpg" alt="cornerless fiddle">
         </div>
       </div>
     </div>
@@ -483,7 +482,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="foot-name">Sandy Bottom Creek Fiddles</span>
+    <span class="foot-name">Sandy Bottom Creek Fiddles&trade;</span>
     <span class="foot-copy">&copy; <span id="yr"></span> All rights reserved</span>
   </footer>
 
